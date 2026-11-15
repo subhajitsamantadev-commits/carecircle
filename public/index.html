@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CareCircle — Elderly Care & Medication Management</title>
+  <meta name="description" content="CareCircle - Compassionate elderly care, medication scheduling, adherence tracking, and family alerts.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Toast Notification Container (ARIA live) -->
+  <div id="toast-container" class="toast-container" role="region" aria-live="polite" aria-label="Notifications"></div>
+
+  <!-- App Wrapper -->
+  <div id="app" class="app-layout">
+    
+    <!-- Top Navigation Header -->
+    <header class="app-header" role="banner">
+      <div class="header-container">
+        <div class="header-left">
+          <div class="logo-wrapper">
+            <span class="logo-icon" aria-hidden="true">💊</span>
+            <div class="logo-text-group">
+              <span class="logo-title">CareCircle</span>
+              <span class="logo-tagline">Elderly Care & Medication Companion</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="header-center">
+          <div id="profile-summary-bar" class="profile-summary-bar hidden" aria-label="Patient Profile Summary">
+            <span class="profile-avatar" aria-hidden="true">👵</span>
+            <div class="profile-meta">
+              <span class="profile-name" id="header-elder-name">Eleanor Vance</span>
+              <span class="profile-details" id="header-elder-details">Age 78 • Blood Type O+ • Primary: Dr. S. Jenkins</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <!-- Elder Mode Toggle Button -->
+          <button id="btn-toggle-elder-mode" class="elder-mode-toggle" type="button" aria-pressed="false" aria-label="Toggle Elder Friendly High Contrast Mode">
+            <span class="elder-mode-icon" aria-hidden="true">👁️</span>
+            <span class="elder-mode-label">Elder Mode: <strong id="elder-mode-status">OFF</strong></span>
+          </button>
+
+          <!-- Role Indicator Badge -->
+          <div id="role-badge" class="role-badge hidden" aria-label="Current Role">
+            <span id="role-badge-icon" aria-hidden="true">👤</span>
+            <span id="role-badge-text">Elder</span>
+          </div>
+
+          <!-- Quick Actions -->
+          <button id="btn-send-test-reminder" class="btn btn-secondary btn-sm" type="button" title="Test Brevo email reminder alert" aria-label="Send test email reminder">
+            <span aria-hidden="true">🔔</span> Send Test Reminder
+          </button>
+
+          <!-- Logout Button -->
+          <button id="btn-logout" class="btn btn-outline btn-sm hidden" type="button" aria-label="Log out of session">
+            Log Out
+          </button>
+        </div>
+      </div>
+
+      <!-- View-Only Notice Banner for Family Role -->
+      <div id="family-viewonly-banner" class="viewonly-banner hidden" role="alert">
+        <span class="alert-icon" aria-hidden="true">ℹ️</span>
+        <span><strong>Family Observer Mode:</strong> You are logged in with view-only permissions. Medication doses, schedules, and appointments are managed by Eleanor or her primary caretaker.</span>
+      </div>
+    </header>
+
+    <!-- Main Navigation Bar -->
+    <nav id="main-nav" class="main-nav hidden" role="navigation" aria-label="Main Navigation">
+      <div class="nav-container">
+        <button class="nav-tab active" data-tab="today" type="button" role="tab" aria-selected="true" aria-controls="tab-today">
+          <span class="tab-icon" aria-hidden="true">⏰</span>
+          <span class="tab-text">Today's Doses</span>
+          <span id="nav-pending-badge" class="nav-count-badge" aria-label="Pending doses count">0</span>
+        </button>
+        <button class="nav-tab" data-tab="adherence" type="button" role="tab" aria-selected="false" aria-controls="tab-adherence">
+          <span class="tab-icon" aria-hidden="true">📊</span>
+          <span class="tab-text">Weekly Adherence</span>
+        </button>
+        <button class="nav-tab" data-tab="medications" type="button" role="tab" aria-selected="false" aria-controls="tab-medications">
+          <span class="tab-icon" aria-hidden="true">💊</span>
+          <span class="tab-text">All Medications</span>
+        </button>
+        <button class="nav-tab" data-tab="appointments" type="button" role="tab" aria-selected="false" aria-controls="tab-appointments">
+          <span class="tab-icon" aria-hidden="true">🗓️</span>
+          <span class="tab-text">Doctor Visits</span>
+        </button>
+        <button class="nav-tab" data-tab="activity" type="button" role="tab" aria-selected="false" aria-controls="tab-activity">
+          <span class="tab-icon" aria-hidden="true">📜</span>
+          <span class="tab-text">Activity & Alerts</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main id="main-content" class="main-content" role="main">
+      
+      <!-- ============================================== -->
+      <!-- VIEW: LOGIN & ROLE SELECTOR -->
+      <!-- ============================================== -->
+      <section id="view-login" class="view-section" aria-labelledby="login-heading">
+        <div class="login-card-container">
+          <div class="login-card">
+            <div class="login-header text-center">
+              <div class="login-avatar-ring">👵</div>
+              <h1 id="login-heading" class="login-title">Welcome to CareCircle</h1>
+              <p class="login-subtitle">A caring, connected medication and wellness companion for <strong>Eleanor Vance</strong>.</p>
+            </div>
+
+            <!-- Role Quick Pick Cards -->
+            <div class="role-selector-group" role="radiogroup" aria-label="Select Care Role">
+              <button type="button" class="role-card" data-passcode="1234" aria-label="Log in as Elder Eleanor with passcode 1234">
+                <div class="role-card-icon">👵</div>
+                <div class="role-card-info">
+                  <span class="role-card-title">Elder (Eleanor)</span>
+                  <span class="role-card-desc">Mark your daily doses, view visits</span>
+                </div>
+                <span class="role-badge-tag">Passcode: 1234</span>
+              </button>
+
+              <button type="button" class="role-card" data-passcode="5678" aria-label="Log in as Caretaker Marcus with passcode 5678">
+                <div class="role-card-icon">🩺</div>
+                <div class="role-card-info">
+                  <span class="role-card-title">Caretaker (Marcus)</span>
+                  <span class="role-card-desc">Manage prescriptions, visits, reminders</span>
+                </div>
+                <span class="role-badge-tag">Passcode: 5678</span>
+              </button>
+
+              <button type="button" class="role-card" data-passcode="9012" aria-label="Log in as Family Sophia with passcode 9012">
+                <div class="role-card-icon">👨‍👩‍👧</div>
+                <div class="role-card-info">
+                  <span class="role-card-title">Family (Sophia)</span>
+                  <span class="role-card-desc">View-Only dashboard & alerts</span>
+                </div>
+                <span class="role-badge-tag">Passcode: 9012</span>
+              </button>
+            </div>
+
+            <div class="divider"><span>OR ENTER PASSCODE</span></div>
+
+            <!-- Passcode Form -->
+            <form id="form-login" class="login-form" novalidate>
+              <div class="form-group">
+                <label for="input-passcode" class="form-label">Care Profile Passcode</label>
+                <div class="passcode-input-wrapper">
+                  <input
+                    type="password"
+                    id="input-passcode"
+                    class="form-input text-center passcode-input"
+                    maxlength="10"
+                    placeholder="Enter 4-digit code"
+                    autocomplete="current-password"
+                    aria-describedby="passcode-hint"
+                    required
+                  >
+                  <button type="button" id="btn-toggle-passcode-vis" class="btn-input-addon" aria-label="Show or hide passcode text">👁️</button>
+                </div>
+                <p id="passcode-hint" class="form-hint text-center">
+                  Demo Passcodes: <strong>1234</strong> (Elder) • <strong>5678</strong> (Caretaker) • <strong>9012</strong> (Family)
+                </p>
+              </div>
+
+              <!-- Number Keypad for touch/elder friendliness -->
+              <div class="keypad-grid" aria-label="Numeric keypad">
+                <button type="button" class="keypad-btn" data-key="1">1</button>
+                <button type="button" class="keypad-btn" data-key="2">2</button>
+                <button type="button" class="keypad-btn" data-key="3">3</button>
+                <button type="button" class="keypad-btn" data-key="4">4</button>
+                <button type="button" class="keypad-btn" data-key="5">5</button>
+                <button type="button" class="keypad-btn" data-key="6">6</button>
+                <button type="button" class="keypad-btn" data-key="7">7</button>
+                <button type="button" class="keypad-btn" data-key="8">8</button>
+                <button type="button" class="keypad-btn" data-key="9">9</button>
+                <button type="button" class="keypad-btn keypad-clear" data-key="clear" aria-label="Clear passcode">C</button>
+                <button type="button" class="keypad-btn" data-key="0">0</button>
+                <button type="button" class="keypad-btn keypad-back" data-key="back" aria-label="Backspace">⌫</button>
+              </div>
+
+              <div id="login-error-msg" class="form-error hidden" role="alert"></div>
+
+              <button type="submit" id="btn-login-submit" class="btn btn-primary btn-block btn-lg">
+                Enter CareCircle Dashboard
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- TAB 1: TODAY'S DOSES -->
+      <!-- ============================================== -->
+      <section id="tab-today" class="tab-pane hidden" role="tabpanel" aria-labelledby="today-heading">
+        <div class="section-header-row">
+          <div>
+            <h2 id="today-heading" class="section-title">Today's Schedule</h2>
+            <p id="today-date-subtitle" class="section-subtitle">Loading date...</p>
+          </div>
+          <div class="summary-pill-group">
+            <span class="pill pill-success" id="pill-today-taken">0 Taken</span>
+            <span class="pill pill-danger" id="pill-today-missed">0 Missed</span>
+            <span class="pill pill-warning" id="pill-today-pending">0 Pending</span>
+          </div>
+        </div>
+
+        <!-- Today's Progress Bar -->
+        <div class="progress-card">
+          <div class="progress-card-header">
+            <span class="progress-label">Today's Completion</span>
+            <span class="progress-percent" id="today-progress-percent">0%</span>
+          </div>
+          <div class="progress-bar-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="today-progress-bar">
+            <div class="progress-bar-fill" id="today-progress-fill" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <!-- Doses Schedule List -->
+        <div id="today-doses-container" class="doses-grid" aria-label="Today's medication doses list">
+          <!-- Dynamic dose cards injected here -->
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- TAB 2: WEEKLY ADHERENCE DASHBOARD -->
+      <!-- ============================================== -->
+      <section id="tab-adherence" class="tab-pane hidden" role="tabpanel" aria-labelledby="adherence-heading">
+        <div class="section-header-row">
+          <div>
+            <h2 id="adherence-heading" class="section-title">Weekly Adherence Dashboard</h2>
+            <p class="section-subtitle">Overview of medication consistency over the past 7 days.</p>
+          </div>
+          <div>
+            <button id="btn-refresh-adherence" class="btn btn-secondary btn-sm" type="button" aria-label="Refresh adherence stats">
+              🔄 Refresh Stats
+            </button>
+          </div>
+        </div>
+
+        <!-- Adherence Top Metrics Cards -->
+        <div class="metrics-grid">
+          <div class="metric-card score-card">
+            <div class="metric-score-circle" id="metric-score-circle">
+              <span class="score-value" id="metric-adherence-rate">--%</span>
+              <span class="score-label">7-Day Score</span>
+            </div>
+            <div class="metric-details">
+              <span class="metric-grade" id="metric-status-grade">Calculating...</span>
+              <span class="metric-subtext">Overall 7-Day Adherence</span>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon bg-emerald" aria-hidden="true">✅</div>
+            <div class="metric-content">
+              <span class="metric-number" id="metric-doses-taken">0</span>
+              <span class="metric-name">Doses Taken</span>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon bg-rose" aria-hidden="true">⚠️</div>
+            <div class="metric-content">
+              <span class="metric-number" id="metric-doses-missed">0</span>
+              <span class="metric-name">Doses Missed</span>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon bg-amber" aria-hidden="true">🔥</div>
+            <div class="metric-content">
+              <span class="metric-number" id="metric-streak-days">0</span>
+              <span class="metric-name">Days Streak (&ge;80%)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7-Day Visual Adherence Chart -->
+        <div class="chart-card">
+          <h3 class="chart-title">7-Day Dose Breakdown</h3>
+          <p class="chart-subtitle">Daily breakdown of taken vs. missed doses</p>
+          <div id="adherence-chart-bars" class="adherence-chart-container" aria-label="7 day adherence bar chart">
+            <!-- Injected dynamically -->
+          </div>
+        </div>
+
+        <!-- Detailed Daily Table -->
+        <div class="table-card">
+          <h3 class="table-title">Daily Adherence Log</h3>
+          <div class="table-responsive">
+            <table class="data-table" aria-label="7 day adherence records">
+              <thead>
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Scheduled</th>
+                  <th scope="col">Taken</th>
+                  <th scope="col">Missed</th>
+                  <th scope="col">Pending</th>
+                  <th scope="col">Adherence %</th>
+                </tr>
+              </thead>
+              <tbody id="adherence-table-body">
+                <!-- Injected dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- TAB 3: ALL MEDICATIONS & GEMINI AI PARSER -->
+      <!-- ============================================== -->
+      <section id="tab-medications" class="tab-pane hidden" role="tabpanel" aria-labelledby="medications-heading">
+        <div class="section-header-row">
+          <div>
+            <h2 id="medications-heading" class="section-title">Medication Prescriptions</h2>
+            <p class="section-subtitle">Active medication regimens, dosage instructions, and refill tracking.</p>
+          </div>
+          <div>
+            <button id="btn-open-add-med" class="btn btn-primary role-write-only" type="button" aria-label="Add new medication">
+              + Add Medication
+            </button>
+          </div>
+        </div>
+
+        <!-- Gemini AI Prescription Parser Box -->
+        <div class="ai-assistant-card role-write-only" aria-labelledby="ai-card-title">
+          <div class="ai-card-header">
+            <div class="ai-title-wrap">
+              <span class="ai-badge">✨ Gemini AI Assistant</span>
+              <h3 id="ai-card-title" class="ai-heading">Smart Medication Auto-Fill</h3>
+            </div>
+            <span class="disclaimer-chip">⚠️ Not Medical Advice</span>
+          </div>
+          <p class="ai-desc">
+            Type natural prescription instructions below to automatically parse and populate medication details:
+          </p>
+
+          <form id="form-ai-parse" class="ai-form">
+            <div class="ai-input-group">
+              <input
+                type="text"
+                id="input-ai-prompt"
+                class="form-input ai-input"
+                placeholder="e.g. Metformin 500mg twice daily after meals"
+                aria-label="Natural language medication instruction prompt"
+              >
+              <button type="submit" id="btn-ai-submit" class="btn btn-ai" aria-label="Parse with Gemini AI">
+                <span id="ai-btn-text">Parse with AI ✨</span>
+                <span id="ai-btn-spinner" class="spinner hidden" aria-hidden="true"></span>
+              </button>
+            </div>
+          </form>
+
+          <!-- Prompt Quick Chips -->
+          <div class="prompt-chips-wrapper">
+            <span class="chips-label">Try Examples:</span>
+            <button type="button" class="prompt-chip" data-example="Metformin 500mg twice daily after meals">
+              Metformin 500mg twice daily after meals
+            </button>
+            <button type="button" class="prompt-chip" data-example="Lisinopril 10mg once every morning at 8am">
+              Lisinopril 10mg once morning at 8am
+            </button>
+            <button type="button" class="prompt-chip" data-example="Atorvastatin 20mg at bedtime">
+              Atorvastatin 20mg at bedtime
+            </button>
+          </div>
+
+          <!-- Medical Disclaimer Notice -->
+          <div class="medical-disclaimer-banner" role="note">
+            <span class="disclaimer-icon" aria-hidden="true">ℹ️</span>
+            <span><strong>Medical Disclaimer:</strong> AI parsing provides administrative formatting only and is NOT medical advice. Always confirm medication dosages with Eleanor's doctor or pharmacist.</span>
+          </div>
+        </div>
+
+        <!-- Medications Grid -->
+        <div id="medications-grid" class="cards-grid" aria-label="Prescribed medications list">
+          <!-- Injected dynamically -->
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- TAB 4: DOCTOR APPOINTMENTS -->
+      <!-- ============================================== -->
+      <section id="tab-appointments" class="tab-pane hidden" role="tabpanel" aria-labelledby="appointments-heading">
+        <div class="section-header-row">
+          <div>
+            <h2 id="appointments-heading" class="section-title">Doctor Appointments</h2>
+            <p class="section-subtitle">Upcoming medical consultations, checkups, and clinical visits.</p>
+          </div>
+          <div>
+            <button id="btn-open-add-apt" class="btn btn-primary role-write-only" type="button" aria-label="Schedule new appointment">
+              + Schedule Visit
+            </button>
+          </div>
+        </div>
+
+        <!-- Appointments List -->
+        <div id="appointments-container" class="appointments-list" aria-label="Doctor appointments list">
+          <!-- Injected dynamically -->
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- TAB 5: ACTIVITY & ALERTS STREAM -->
+      <!-- ============================================== -->
+      <section id="tab-activity" class="tab-pane hidden" role="tabpanel" aria-labelledby="activity-heading">
+        <div class="section-header-row">
+          <div>
+            <h2 id="activity-heading" class="section-title">Audit Activity & Alerts</h2>
+            <p class="section-subtitle">Live audit stream of medication doses, Brevo email reminders, and care events.</p>
+          </div>
+          <div class="action-btn-group">
+            <button id="btn-trigger-cron" class="btn btn-secondary btn-sm" type="button" aria-label="Trigger Cron Reminder Evaluation">
+              ⚡ Run Cron Reminders
+            </button>
+            <button id="btn-refresh-logs" class="btn btn-outline btn-sm" type="button" aria-label="Refresh activity log">
+              🔄 Refresh
+            </button>
+          </div>
+        </div>
+
+        <div class="activity-timeline-card">
+          <ul id="activity-logs-container" class="activity-list" aria-label="Audit activity timeline">
+            <!-- Dynamic log entries injected here -->
+          </ul>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer" role="contentinfo">
+      <div class="footer-container">
+        <span>CareCircle &copy; 2026 — Built for Elder Care Hackathon</span>
+        <span>Node + Express • Brevo Alerts • Gemini AI</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: ADD / EDIT MEDICATION -->
+  <!-- ============================================== -->
+  <div id="modal-medication" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modal-med-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="modal-med-title" class="modal-title">Add Medication</h3>
+        <button type="button" class="btn-close-modal" data-close="modal-medication" aria-label="Close modal">&times;</button>
+      </div>
+
+      <form id="form-medication" class="modal-form">
+        <input type="hidden" id="med-id" name="id">
+
+        <div class="form-row">
+          <div class="form-group flex-1">
+            <label for="med-name" class="form-label">Medication Name *</label>
+            <input type="text" id="med-name" name="name" class="form-input" required placeholder="e.g. Metformin">
+          </div>
+          <div class="form-group flex-1">
+            <label for="med-dosage" class="form-label">Dosage *</label>
+            <input type="text" id="med-dosage" name="dosage" class="form-input" required placeholder="e.g. 500mg, 1 tablet">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="med-instructions" class="form-label">Instructions</label>
+          <textarea id="med-instructions" name="instructions" class="form-textarea" rows="2" placeholder="e.g. Take twice daily with meals"></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group flex-1">
+            <label for="med-purpose" class="form-label">Condition / Purpose</label>
+            <input type="text" id="med-purpose" name="purpose" class="form-input" placeholder="e.g. Type 2 Diabetes, Blood Pressure">
+          </div>
+          <div class="form-group flex-1">
+            <label for="med-doctor" class="form-label">Prescribing Doctor</label>
+            <input type="text" id="med-doctor" name="prescribedBy" class="form-input" placeholder="e.g. Dr. Sarah Jenkins">
+          </div>
+        </div>
+
+        <!-- Schedule Times -->
+        <div class="form-group">
+          <label class="form-label">Daily Schedule Times (24-hour HH:MM)</label>
+          <div id="schedule-times-wrapper" class="schedule-times-input-list">
+            <!-- Dynamic time inputs -->
+          </div>
+          <button type="button" id="btn-add-schedule-time" class="btn btn-outline btn-xs mt-1">+ Add Another Dose Time</button>
+        </div>
+
+        <!-- Days of Week Selection -->
+        <div class="form-group">
+          <label class="form-label">Days of Week</label>
+          <div class="days-checkbox-grid" aria-label="Days of week selector">
+            <label class="day-checkbox-label"><input type="checkbox" name="days" value="Mon" checked> Mon</label>
+            <label class="day-checkbox-label"><input type="checkbox" name="days" value="Tue" checked> Tue</label>
+            <label class="day-checkbox-label"><input type="checkbox" name="days" value="Wed" checked> Wed</label>
+            <label class="day-checkbox-label"><input type="checkbox" name="days" value="Thu" checked> Thu</label>
+            <label class="day-checkbox-label"><input type="checkbox" name="days" value="Fri" checked> Fri</label>
+            <label class="day-checkbox-label"><input type="checkbox" name="days" value="Sat" checked> Sat</label>
+            <label class="day-checkbox-label"><input type="checkbox" name="days" value="Sun" checked> Sun</label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group flex-1">
+            <label for="med-refills" class="form-label">Refill Quantity Remaining</label>
+            <input type="number" id="med-refills" name="refillRemaining" class="form-input" min="0" value="30">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" data-close="modal-medication">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="btn-save-med">Save Medication</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: ADD / EDIT APPOINTMENT -->
+  <!-- ============================================== -->
+  <div id="modal-appointment" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modal-apt-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="modal-apt-title" class="modal-title">Schedule Doctor Visit</h3>
+        <button type="button" class="btn-close-modal" data-close="modal-appointment" aria-label="Close modal">&times;</button>
+      </div>
+
+      <form id="form-appointment" class="modal-form">
+        <input type="hidden" id="apt-id" name="id">
+
+        <div class="form-row">
+          <div class="form-group flex-1">
+            <label for="apt-doctor" class="form-label">Doctor Name *</label>
+            <input type="text" id="apt-doctor" name="doctorName" class="form-input" required placeholder="e.g. Dr. Sarah Jenkins">
+          </div>
+          <div class="form-group flex-1">
+            <label for="apt-specialty" class="form-label">Specialty</label>
+            <input type="text" id="apt-specialty" name="specialty" class="form-input" placeholder="e.g. Cardiology, Orthopedics">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="apt-title-input" class="form-label">Reason / Visit Title *</label>
+          <input type="text" id="apt-title-input" name="title" class="form-input" required placeholder="e.g. Quarterly Blood Pressure Review">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group flex-1">
+            <label for="apt-date" class="form-label">Date (YYYY-MM-DD) *</label>
+            <input type="date" id="apt-date" name="date" class="form-input" required>
+          </div>
+          <div class="form-group flex-1">
+            <label for="apt-time" class="form-label">Time (HH:MM) *</label>
+            <input type="time" id="apt-time" name="time" class="form-input" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="apt-location" class="form-label">Clinic Location / Address</label>
+          <input type="text" id="apt-location" name="location" class="form-input" placeholder="e.g. St. Jude Health Center, Suite 402">
+        </div>
+
+        <div class="form-group">
+          <label for="apt-notes" class="form-label">Preparation / Notes</label>
+          <textarea id="apt-notes" name="notes" class="form-textarea" rows="2" placeholder="e.g. Fasting required, bring glucose chart"></textarea>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" data-close="modal-appointment">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="btn-save-apt">Save Visit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

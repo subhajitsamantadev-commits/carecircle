@@ -1,0 +1,900 @@
+{
+  "profile": {
+    "id": "prof-eleanor-vance",
+    "name": "Eleanor Vance",
+    "preferredName": "Ellie",
+    "age": 78,
+    "dateOfBirth": "1948-04-12",
+    "gender": "Female",
+    "bloodType": "O+",
+    "allergies": [
+      "Penicillin",
+      "Sulfa drugs"
+    ],
+    "conditions": [
+      "Hypertension",
+      "Type 2 Diabetes",
+      "Mild Osteoarthritis"
+    ],
+    "primaryDoctor": "Dr. Sarah Jenkins (Cardiology & Internal Medicine)",
+    "emergencyContact": {
+      "name": "Marcus Vance",
+      "relation": "Son & Primary Caretaker",
+      "phone": "+1 (555) 234-5678",
+      "email": "caretaker@example.com"
+    },
+    "familyContact": {
+      "name": "Sophia Vance",
+      "relation": "Granddaughter",
+      "phone": "+1 (555) 876-5432",
+      "email": "family@example.com"
+    },
+    "passcodes": {
+      "elder": "$2a$10$s7Er07LmqUBnM2gNGBIwIutr8hyGEQsPEsY9Ry.U3OOf4ZB1Uq3Re",
+      "caretaker": "$2a$10$s7Er07LmqUBnM2gNGBIwIuIv/3xbjoiRlwX9LuBSdHkQ9cdYHebzW",
+      "family": "$2a$10$s7Er07LmqUBnM2gNGBIwIuGh4qHP6/AFGtjXl0NpSe3chmvtC2u4O"
+    },
+    "elderModeDefault": true,
+    "updatedAt": "2026-11-15T09:50:46.080Z"
+  },
+  "medications": [
+    {
+      "id": "med-1",
+      "name": "Metformin",
+      "dosage": "500mg",
+      "instructions": "Take 1 tablet twice daily with meals to regulate blood sugar",
+      "purpose": "Type 2 Diabetes",
+      "scheduleTimes": [
+        "08:00",
+        "20:00"
+      ],
+      "daysOfWeek": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+      ],
+      "prescribedBy": "Dr. Sarah Jenkins",
+      "refillRemaining": 45,
+      "active": true,
+      "color": "#3b82f6",
+      "icon": "pill",
+      "createdAt": "2026-10-16T09:50:46.080Z"
+    },
+    {
+      "id": "med-2",
+      "name": "Lisinopril",
+      "dosage": "10mg",
+      "instructions": "Take 1 tablet every morning with a full glass of water",
+      "purpose": "Hypertension (Blood Pressure)",
+      "scheduleTimes": [
+        "08:00"
+      ],
+      "daysOfWeek": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+      ],
+      "prescribedBy": "Dr. Sarah Jenkins",
+      "refillRemaining": 20,
+      "active": true,
+      "color": "#10b981",
+      "icon": "tablet",
+      "createdAt": "2026-10-06T09:50:46.080Z"
+    },
+    {
+      "id": "med-3",
+      "name": "Glipizide",
+      "dosage": "5mg",
+      "instructions": "Take 1 tablet 30 minutes before breakfast",
+      "purpose": "Insulin sensitivity",
+      "scheduleTimes": [
+        "07:30"
+      ],
+      "daysOfWeek": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+      ],
+      "prescribedBy": "Dr. Sarah Jenkins",
+      "refillRemaining": 14,
+      "active": true,
+      "color": "#f59e0b",
+      "icon": "capsule",
+      "createdAt": "2026-10-21T09:50:46.080Z"
+    },
+    {
+      "id": "med-4",
+      "name": "Calcium & Vitamin D3",
+      "dosage": "600mg / 400IU",
+      "instructions": "Take 1 tablet at lunchtime with food",
+      "purpose": "Bone Density & Joint Support",
+      "scheduleTimes": [
+        "12:30"
+      ],
+      "daysOfWeek": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+      ],
+      "prescribedBy": "Dr. Robert Chen",
+      "refillRemaining": 60,
+      "active": true,
+      "color": "#8b5cf6",
+      "icon": "sun",
+      "createdAt": "2026-09-16T09:50:46.080Z"
+    },
+    {
+      "id": "med-5",
+      "name": "Atorvastatin",
+      "dosage": "20mg",
+      "instructions": "Take 1 tablet at bedtime",
+      "purpose": "Cholesterol Regulation",
+      "scheduleTimes": [
+        "21:00"
+      ],
+      "daysOfWeek": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+      ],
+      "prescribedBy": "Dr. Sarah Jenkins",
+      "refillRemaining": 30,
+      "active": true,
+      "color": "#ec4899",
+      "icon": "moon",
+      "createdAt": "2026-09-26T09:50:46.080Z"
+    }
+  ],
+  "doseLogs": [
+    {
+      "id": "dose-1",
+      "medicationId": "med-1",
+      "medicationName": "Metformin",
+      "dosage": "500mg",
+      "scheduledTime": "08:00",
+      "date": "2026-11-09",
+      "status": "taken",
+      "loggedAt": "2026-11-09T02:30:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-2",
+      "medicationId": "med-1",
+      "medicationName": "Metformin",
+      "dosage": "500mg",
+      "scheduledTime": "20:00",
+      "date": "2026-11-09",
+      "status": "taken",
+      "loggedAt": "2026-11-09T14:30:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-3",
+      "medicationId": "med-2",
+      "medicationName": "Lisinopril",
+      "dosage": "10mg",
+      "scheduledTime": "08:00",
+      "date": "2026-11-09",
+      "status": "taken",
+      "loggedAt": "2026-11-09T02:30:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-4",
+      "medicationId": "med-3",
+      "medicationName": "Glipizide",
+      "dosage": "5mg",
+      "scheduledTime": "07:30",
+      "date": "2026-11-09",
+      "status": "taken",
+      "loggedAt": "2026-11-09T02:00:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-5",
+      "medicationId": "med-4",
+      "medicationName": "Calcium & Vitamin D3",
+      "dosage": "600mg / 400IU",
+      "scheduledTime": "12:30",
+      "date": "2026-11-09",
+      "status": "taken",
+      "loggedAt": "2026-11-09T07:00:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-6",
+      "medicationId": "med-5",
+      "medicationName": "Atorvastatin",
+      "dosage": "20mg",
+      "scheduledTime": "21:00",
+      "date": "2026-11-09",
+      "status": "taken",
+      "loggedAt": "2026-11-09T15:30:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-7",
+      "medicationId": "med-1",
+      "medicationName": "Metformin",
+      "dosage": "500mg",
+      "scheduledTime": "08:00",
+      "date": "2026-11-10",
+      "status": "taken",
+      "loggedAt": "2026-11-10T02:30:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-8",
+      "medicationId": "med-1",
+      "medicationName": "Metformin",
+      "dosage": "500mg",
+      "scheduledTime": "20:00",
+      "date": "2026-11-10",
+      "status": "missed",
+      "loggedAt": "2026-11-10T14:30:00.000Z",
+      "loggedBy": "caretaker",
+      "notes": "Elder was resting away from home"
+    },
+    {
+      "id": "dose-9",
+      "medicationId": "med-2",
+      "medicationName": "Lisinopril",
+      "dosage": "10mg",
+      "scheduledTime": "08:00",
+      "date": "2026-11-10",
+      "status": "taken",
+      "loggedAt": "2026-11-10T02:30:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-10",
+      "medicationId": "med-3",
+      "medicationName": "Glipizide",
+      "dosage": "5mg",
+      "scheduledTime": "07:30",
+      "date": "2026-11-10",
+      "status": "taken",
+      "loggedAt": "2026-11-10T02:00:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-11",
+      "medicationId": "med-4",
+      "medicationName": "Calcium & Vitamin D3",
+      "dosage": "600mg / 400IU",
+      "scheduledTime": "12:30",
+      "date": "2026-11-10",
+      "status": "taken",
+      "loggedAt": "2026-11-10T07:00:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-12",
+      "medicationId": "med-5",
+      "medicationName": "Atorvastatin",
+      "dosage": "20mg",
+      "scheduledTime": "21:00",
+      "date": "2026-11-10",
+      "status": "taken",
+      "loggedAt": "2026-11-10T15:30:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-13",
+      "medicationId": "med-1",
+      "medicationName": "Metformin",
+      "dosage": "500mg",
+      "scheduledTime": "08:00",
+      "date": "2026-11-11",
+      "status": "taken",
+      "loggedAt": "2026-11-11T02:30:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-14",
+      "medicationId": "med-1",
+      "medicationName": "Metformin",
+      "dosage": "500mg",
+      "scheduledTime": "20:00",
+      "date": "2026-11-11",
+      "status": "taken",
+      "loggedAt": "2026-11-11T14:30:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-15",
+      "medicationId": "med-2",
+      "medicationName": "Lisinopril",
+      "dosage": "10mg",
+      "scheduledTime": "08:00",
+      "date": "2026-11-11",
+      "status": "taken",
+      "loggedAt": "2026-11-11T02:30:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-16",
+      "medicationId": "med-3",
+      "medicationName": "Glipizide",
+      "dosage": "5mg",
+      "scheduledTime": "07:30",
+      "date": "2026-11-11",
+      "status": "taken",
+      "loggedAt": "2026-11-11T02:00:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-17",
+      "medicationId": "med-4",
+      "medicationName": "Calcium & Vitamin D3",
+      "dosage": "600mg / 400IU",
+      "scheduledTime": "12:30",
+      "date": "2026-11-11",
+      "status": "missed",
+      "loggedAt": "2026-11-11T07:00:00.000Z",
+      "loggedBy": "system",
+      "notes": "Elder was resting away from home"
+    },
+    {
+      "id": "dose-18",
+      "medicationId": "med-5",
+      "medicationName": "Atorvastatin",
+      "dosage": "20mg",
+      "scheduledTime": "21:00",
+      "date": "2026-11-11",
+      "status": "taken",
+      "loggedAt": "2026-11-11T15:30:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-19",
+      "medicationId": "med-1",
+      "medicationName": "Metformin",
+      "dosage": "500mg",
+      "scheduledTime": "08:00",
+      "date": "2026-11-12",
+      "status": "taken",
+      "loggedAt": "2026-11-12T02:30:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-20",
+      "medicationId": "med-1",
+      "medicationName": "Metformin",
+      "dosage": "500mg",
+      "scheduledTime": "20:00",
+      "date": "2026-11-12",
+      "status": "taken",
+      "loggedAt": "2026-11-12T14:30:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-21",
+      "medicationId": "med-2",
+      "medicationName": "Lisinopril",
+      "dosage": "10mg",
+      "scheduledTime": "08:00",
+      "date": "2026-11-12",
+      "status": "taken",
+      "loggedAt": "2026-11-12T02:30:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-22",
+      "medicationId": "med-3",
+      "medicationName": "Glipizide",
+      "dosage": "5mg",
+      "scheduledTime": "07:30",
+      "date": "2026-11-12",
+      "status": "taken",
+      "loggedAt": "2026-11-12T02:00:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-23",
+      "medicationId": "med-4",
+      "medicationName": "Calcium & Vitamin D3",
+      "dosage": "600mg / 400IU",
+      "scheduledTime": "12:30",
+      "date": "2026-11-12",
+      "status": "taken",
+      "loggedAt": "2026-11-12T07:00:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-24",
+      "medicationId": "med-5",
+      "medicationName": "Atorvastatin",
+      "dosage": "20mg",
+      "scheduledTime": "21:00",
+      "date": "2026-11-12",
+      "status": "taken",
+      "loggedAt": "2026-11-12T15:30:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-25",
+      "medicationId": "med-1",
+      "medicationName": "Metformin",
+      "dosage": "500mg",
+      "scheduledTime": "08:00",
+      "date": "2026-11-13",
+      "status": "taken",
+      "loggedAt": "2026-11-13T02:30:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-26",
+      "medicationId": "med-1",
+      "medicationName": "Metformin",
+      "dosage": "500mg",
+      "scheduledTime": "20:00",
+      "date": "2026-11-13",
+      "status": "taken",
+      "loggedAt": "2026-11-13T14:30:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-27",
+      "medicationId": "med-2",
+      "medicationName": "Lisinopril",
+      "dosage": "10mg",
+      "scheduledTime": "08:00",
+      "date": "2026-11-13",
+      "status": "taken",
+      "loggedAt": "2026-11-13T02:30:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-28",
+      "medicationId": "med-3",
+      "medicationName": "Glipizide",
+      "dosage": "5mg",
+      "scheduledTime": "07:30",
+      "date": "2026-11-13",
+      "status": "taken",
+      "loggedAt": "2026-11-13T02:00:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-29",
+      "medicationId": "med-4",
+      "medicationName": "Calcium & Vitamin D3",
+      "dosage": "600mg / 400IU",
+      "scheduledTime": "12:30",
+      "date": "2026-11-13",
+      "status": "taken",
+      "loggedAt": "2026-11-13T07:00:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-30",
+      "medicationId": "med-5",
+      "medicationName": "Atorvastatin",
+      "dosage": "20mg",
+      "scheduledTime": "21:00",
+      "date": "2026-11-13",
+      "status": "missed",
+      "loggedAt": "2026-11-13T15:30:00.000Z",
+      "loggedBy": "system",
+      "notes": "Elder was resting away from home"
+    },
+    {
+      "id": "dose-31",
+      "medicationId": "med-1",
+      "medicationName": "Metformin",
+      "dosage": "500mg",
+      "scheduledTime": "08:00",
+      "date": "2026-11-14",
+      "status": "taken",
+      "loggedAt": "2026-11-14T02:30:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-32",
+      "medicationId": "med-1",
+      "medicationName": "Metformin",
+      "dosage": "500mg",
+      "scheduledTime": "20:00",
+      "date": "2026-11-14",
+      "status": "taken",
+      "loggedAt": "2026-11-14T14:30:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-33",
+      "medicationId": "med-2",
+      "medicationName": "Lisinopril",
+      "dosage": "10mg",
+      "scheduledTime": "08:00",
+      "date": "2026-11-14",
+      "status": "taken",
+      "loggedAt": "2026-11-14T02:30:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-34",
+      "medicationId": "med-3",
+      "medicationName": "Glipizide",
+      "dosage": "5mg",
+      "scheduledTime": "07:30",
+      "date": "2026-11-14",
+      "status": "taken",
+      "loggedAt": "2026-11-14T02:00:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-35",
+      "medicationId": "med-4",
+      "medicationName": "Calcium & Vitamin D3",
+      "dosage": "600mg / 400IU",
+      "scheduledTime": "12:30",
+      "date": "2026-11-14",
+      "status": "taken",
+      "loggedAt": "2026-11-14T07:00:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-36",
+      "medicationId": "med-5",
+      "medicationName": "Atorvastatin",
+      "dosage": "20mg",
+      "scheduledTime": "21:00",
+      "date": "2026-11-14",
+      "status": "taken",
+      "loggedAt": "2026-11-14T15:30:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-37",
+      "medicationId": "med-1",
+      "medicationName": "Metformin",
+      "dosage": "500mg",
+      "scheduledTime": "08:00",
+      "date": "2026-11-15",
+      "status": "taken",
+      "loggedAt": "2026-11-15T02:30:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-38",
+      "medicationId": "med-2",
+      "medicationName": "Lisinopril",
+      "dosage": "10mg",
+      "scheduledTime": "08:00",
+      "date": "2026-11-15",
+      "status": "taken",
+      "loggedAt": "2026-11-15T02:30:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-39",
+      "medicationId": "med-3",
+      "medicationName": "Glipizide",
+      "dosage": "5mg",
+      "scheduledTime": "07:30",
+      "date": "2026-11-15",
+      "status": "taken",
+      "loggedAt": "2026-11-15T09:50:50.175Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    },
+    {
+      "id": "dose-40",
+      "medicationId": "med-4",
+      "medicationName": "Calcium & Vitamin D3",
+      "dosage": "600mg / 400IU",
+      "scheduledTime": "12:30",
+      "date": "2026-11-15",
+      "status": "taken",
+      "loggedAt": "2026-11-15T07:00:00.000Z",
+      "loggedBy": "elder",
+      "notes": "Taken with water"
+    }
+  ],
+  "appointments": [
+    {
+      "id": "apt-1",
+      "doctorName": "Dr. Sarah Jenkins",
+      "specialty": "Cardiology & Internal Medicine",
+      "title": "Quarterly Cardiovascular & Diabetes Checkup",
+      "date": "2026-11-16",
+      "time": "10:30",
+      "location": "St. Jude Health Pavilion, Suite 402, 100 Main St.",
+      "notes": "Bring current glucose logs and medication list. Fasting required after midnight.",
+      "phone": "+1 (555) 901-2345",
+      "status": "upcoming",
+      "createdAt": "2026-11-08T09:50:46.080Z"
+    },
+    {
+      "id": "apt-2",
+      "doctorName": "Dr. Robert Chen",
+      "specialty": "Orthopedics & Joint Health",
+      "title": "Knee Mobility Assessment & Physical Therapy Review",
+      "date": "2026-11-19",
+      "time": "14:00",
+      "location": "City Center Orthopedic Wing, Room 215",
+      "notes": "Discuss mild right knee stiffness during morning walks.",
+      "phone": "+1 (555) 432-1098",
+      "status": "upcoming",
+      "createdAt": "2026-11-10T09:50:46.080Z"
+    },
+    {
+      "id": "apt-3",
+      "doctorName": "Dr. Emily Walsh",
+      "specialty": "Ophthalmology",
+      "title": "Annual Diabetic Retinopathy & Vision Screening",
+      "date": "2026-11-27",
+      "time": "11:15",
+      "location": "ClearVision Eye Center, 45 West Oak Ave",
+      "notes": "Pupil dilation test will be performed. Caretaker transportation arranged.",
+      "phone": "+1 (555) 678-9012",
+      "status": "upcoming",
+      "createdAt": "2026-11-13T09:50:46.080Z"
+    },
+    {
+      "id": "apt-1794736250630-u22y",
+      "doctorName": "Dr. Gregory House",
+      "specialty": "Diagnostics",
+      "title": "Annual Comprehensive Medical Review",
+      "date": "2026-12-01",
+      "time": "14:30",
+      "location": "Princeton Plainsboro Suite 101",
+      "notes": "",
+      "phone": "",
+      "status": "upcoming",
+      "createdAt": "2026-11-15T09:50:50.630Z"
+    }
+  ],
+  "activityLogs": [
+    {
+      "id": "act-1794736250848-pd1q",
+      "timestamp": "2026-11-15T09:50:50.848Z",
+      "action": "USER_LOGIN",
+      "description": "User logged in under 'elder' role",
+      "performedBy": "elder",
+      "category": "auth"
+    },
+    {
+      "id": "act-1794736250653-xpk3",
+      "timestamp": "2026-11-15T09:50:50.653Z",
+      "action": "TEST_REMINDER_SENT",
+      "description": "Manual test reminder triggered and dispatched to caretaker@example.com (Simulated Console)",
+      "performedBy": "user",
+      "category": "reminder"
+    },
+    {
+      "id": "act-1794736250644-ibce",
+      "timestamp": "2026-11-15T09:50:50.644Z",
+      "action": "APPOINTMENT_REMINDER_SENT",
+      "description": "Upcoming appointment reminder for Dr. Sarah Jenkins sent to caretaker@example.com",
+      "performedBy": "system",
+      "category": "reminder"
+    },
+    {
+      "id": "act-1794736250631-elcp",
+      "timestamp": "2026-11-15T09:50:50.631Z",
+      "action": "APPOINTMENT_SCHEDULED",
+      "description": "Scheduled appointment with Dr. Gregory House for 2026-12-01 at 14:30",
+      "performedBy": "caretaker",
+      "category": "appointment"
+    },
+    {
+      "id": "act-1794736250620-rxgh",
+      "timestamp": "2026-11-15T09:50:50.620Z",
+      "action": "USER_LOGIN",
+      "description": "User logged in under 'caretaker' role",
+      "performedBy": "caretaker",
+      "category": "auth"
+    },
+    {
+      "id": "act-1794736250178-hkug",
+      "timestamp": "2026-11-15T09:50:50.178Z",
+      "action": "DOSE_TAKEN",
+      "description": "Marked Glipizide (5mg) at 07:30 as TAKEN",
+      "performedBy": "elder",
+      "category": "medication"
+    },
+    {
+      "id": "act-1794736250135-yhk1",
+      "timestamp": "2026-11-15T09:50:50.135Z",
+      "action": "USER_LOGIN",
+      "description": "User logged in under 'elder' role",
+      "performedBy": "elder",
+      "category": "auth"
+    },
+    {
+      "id": "act-1794736249908-dayk",
+      "timestamp": "2026-11-15T09:50:49.908Z",
+      "action": "MEDICATION_DELETED",
+      "description": "Removed prescription 'Omega-3 Fish Oil'",
+      "performedBy": "caretaker",
+      "category": "medication"
+    },
+    {
+      "id": "act-1794736249895-v4uz",
+      "timestamp": "2026-11-15T09:50:49.895Z",
+      "action": "MEDICATION_UPDATED",
+      "description": "Updated prescription 'Omega-3 Fish Oil' (1200mg)",
+      "performedBy": "caretaker",
+      "category": "medication"
+    },
+    {
+      "id": "act-1794736249884-vvu4",
+      "timestamp": "2026-11-15T09:50:49.884Z",
+      "action": "MEDICATION_ADDED",
+      "description": "Added prescription 'Omega-3 Fish Oil' (1000mg)",
+      "performedBy": "caretaker",
+      "category": "medication"
+    },
+    {
+      "id": "act-1794736249868-rsia",
+      "timestamp": "2026-11-15T09:50:49.868Z",
+      "action": "USER_LOGIN",
+      "description": "User logged in under 'caretaker' role",
+      "performedBy": "caretaker",
+      "category": "auth"
+    },
+    {
+      "id": "act-1794736249437-4xr4",
+      "timestamp": "2026-11-15T09:50:49.437Z",
+      "action": "USER_LOGIN",
+      "description": "User logged in under 'family' role",
+      "performedBy": "family",
+      "category": "auth"
+    },
+    {
+      "id": "act-1794736248804-qcrq",
+      "timestamp": "2026-11-15T09:50:48.804Z",
+      "action": "USER_LOGIN",
+      "description": "User logged in under 'family' role",
+      "performedBy": "family",
+      "category": "auth"
+    },
+    {
+      "id": "act-1794736248202-go4b",
+      "timestamp": "2026-11-15T09:50:48.202Z",
+      "action": "USER_LOGIN",
+      "description": "User logged in under 'caretaker' role",
+      "performedBy": "caretaker",
+      "category": "auth"
+    },
+    {
+      "id": "act-1794736247792-ktx2",
+      "timestamp": "2026-11-15T09:50:47.792Z",
+      "action": "USER_LOGIN",
+      "description": "User logged in under 'elder' role",
+      "performedBy": "elder",
+      "category": "auth"
+    },
+    {
+      "id": "act-1",
+      "timestamp": "2026-11-15T06:50:46.080Z",
+      "action": "SYSTEM_BOOT",
+      "description": "CareCircle platform initialized and demo data auto-seeded",
+      "performedBy": "system",
+      "category": "system"
+    },
+    {
+      "id": "act-2",
+      "timestamp": "2026-11-15T07:50:46.080Z",
+      "action": "DOSE_TAKEN",
+      "description": "Marked Lisinopril 10mg (08:00) as TAKEN",
+      "performedBy": "elder",
+      "category": "medication"
+    },
+    {
+      "id": "act-3",
+      "timestamp": "2026-11-15T07:50:46.080Z",
+      "action": "DOSE_TAKEN",
+      "description": "Marked Metformin 500mg (08:00) as TAKEN",
+      "performedBy": "elder",
+      "category": "medication"
+    },
+    {
+      "id": "act-4",
+      "timestamp": "2026-11-15T08:50:46.080Z",
+      "action": "APPOINTMENT_SCHEDULED",
+      "description": "Scheduled Cardiology appointment with Dr. Sarah Jenkins",
+      "performedBy": "caretaker",
+      "category": "appointment"
+    }
+  ],
+  "reminderLogs": [
+    {
+      "id": "rem-1794736250651-mosb",
+      "sentAt": "2026-11-15T09:50:50.651Z",
+      "reminderType": "manual_test_reminder",
+      "targetId": "test-trigger",
+      "date": "2026-11-15",
+      "timeSlot": "3:20:50 pm",
+      "recipient": "caretaker@example.com",
+      "channel": "brevo_email",
+      "simulated": true,
+      "subject": "🔔 [Test Reminder] CareCircle Health Notification for Eleanor Vance"
+    },
+    {
+      "id": "rem-1794736250642-4ncc",
+      "sentAt": "2026-11-15T09:50:50.642Z",
+      "reminderType": "upcoming_appointment",
+      "targetId": "apt-1",
+      "date": "2026-11-16",
+      "timeSlot": "10:30",
+      "recipient": "caretaker@example.com",
+      "channel": "brevo_email",
+      "simulated": true,
+      "subject": "🗓️ Appointment Reminder: Dr. Sarah Jenkins on 2026-11-16 at 10:30"
+    },
+    {
+      "id": "rem-init-1",
+      "reminderType": "morning_dose_reminder",
+      "targetId": "med-1",
+      "date": "2026-11-15",
+      "timeSlot": "08:00",
+      "recipient": "caretaker@example.com",
+      "sentAt": "2026-11-15T07:20:46.080Z",
+      "channel": "brevo_email",
+      "simulated": true,
+      "subject": "Morning Medication Reminder: Eleanor Vance"
+    }
+  ],
+  "metadata": {
+    "seededAt": "2026-11-15T09:50:46.080Z",
+    "version": "1.0.0"
+  }
+}
